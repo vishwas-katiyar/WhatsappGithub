@@ -25,4 +25,5 @@ urlpatterns = [
     path('',views.index,name='index' ),
     path('features/',views.features,name='features' ),
     path('users/',views.users,name='users' ),
+    path('bot/',views.bot,name='bot' ),
 ]
