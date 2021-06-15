@@ -1,0 +1,237 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+    <title>Cover Template for Bootstrap</title>
+
+    <style>
+        /*
+ * Globals
+ */
+
+        /* Links */
+        a,
+        a:focus,
+        a:hover {
+            color: #fff;
+        }
+
+        /* Custom default button */
+        .btn-secondary,
+        .btn-secondary:hover,
+        .btn-secondary:focus {
+            color: #333;
+            text-shadow: none;
+            /* Prevent inheritance from `body` */
+            background-color: #fff;
+            border: .05rem solid #fff;
+        }
+
+
+        /*
+ * Base structure
+ */
+
+        html,
+        body {
+            /* height: 100vh; */
+            /* width: fit-content; */
+            background-image: url('https://iili.io/fJlOs2.jpg');
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+
+            background-size: cover;
+        }
+
+        body {
+            /* display: -ms-flexbox;
+            display: -webkit-box;
+            display: flex;
+            -ms-flex-pack: center;
+            -webkit-box-pack: center;
+            justify-content: center; */
+            color: #fff;
+            text-shadow: 0 .05rem .1rem rgba(0, 0, 0, .5);
+            box-shadow: inset 0 0 5rem rgba(0, 0, 0, .5);
+        }
+
+        .cover-container {
+            max-width: 42em;
+        }
+
+
+        /*
+ * Header
+ */
+        .masthead {
+            margin-bottom: 2rem;
+        }
+
+        .masthead-brand {
+            color: wheat;
+            margin-bottom: 0;
+        }
+
+        .nav-masthead .nav-link {
+            padding: .25rem 0;
+            font-weight: 700;
+            /* color: rgba(255, 255, 255, .5); */
+            background-color: transparent;
+            border-bottom: .25rem solid transparent;
+        }
+
+        .nav-masthead .nav-link:hover,
+        .nav-masthead .nav-link:focus {
+            border-bottom-color: rgba(255, 255, 255, .25);
+        }
+
+        .nav-masthead .nav-link+.nav-link {
+            margin-left: 1rem;
+        }
+
+        .nav-masthead .active {
+            color: #fff;
+            border-bottom-color: #fff;
+        }
+
+        @media (min-width: 48em) {
+            .masthead-brand {
+                float: left;
+            }
+
+            .nav-masthead {
+                float: right;
+            }
+        }
+
+
+        /*
+ * Cover
+ */
+        .cover {
+            padding: 0 1.5rem;
+        }
+
+        .cover .btn-lg {
+            padding: .75rem 1.25rem;
+            font-weight: 700;
+        }
+
+
+        /*
+ * Footer
+ */
+        .mastfoot {
+            color: rgba(255, 255, 255, .5);
+        }
+
+        .table-dark {
+            color: #fff;
+            background-color: transparent;
+        }
+    </style>
+    <style>
+        .table-dark {
+    --bs-table-bg: none}
+    </style>
+
+</head>
+
+<body>
+<header class="masthead mb-auto" style="height: 4rem;padding: 1.5%;">
+            <div class="inner">
+                <h3 class="masthead-brand">Whatsapp-Analyser</h3>
+                <nav class="nav nav-masthead justify-content-center">
+                    <a class="nav-link active" href="#">Home</a>
+                    <a class="nav-link" href="{% url 'features' %}">Features</a>
+                    <a class="nav-link" href="{% url 'users' %}">Contact</a>
+                </nav>
+            </div>
+        </header>
+    <div class="container">
+        <!-- <center> -->
+        
+        <main role="main" class="inner cover">
+
+
+            <!-- <h3>{{df}}</h3> -->
+            <div class="container-fluid">
+                <table class="table table-hover table-dark">
+                    <thead>
+                        <tr>
+
+
+
+                            <th scope="col">S No.</th>
+                            <th scope="col"> Participent Name </th>
+                            <th scope="col">Total Message Sent</th>
+                            <th scope="col">Total Emoji Sent</th>
+                            <th scope="col">Words Per Messages</th>
+                            <th scope="col">Total Link Sent</th>
+
+
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        {% for i,j in user.items %}
+                        <tr>
+                            <td scope="row">{{ forloop.counter }}</td>
+                            <td>{{i}}</td>
+                            <td>{{j.0}}</td>
+                            <td>{{j.3}}</td>
+                            <td>{{j.2}}</td>
+                            <td>{{j.4}}</td>
+                        </tr>
+
+                        {% endfor %}
+
+                    </tbody>
+                </table>
+            </div>
+        </main>
+        <!-- </center> -->
+
+
+        
+    </div>
+    <footer class="mastfoot mt-auto">
+        <center>
+        <div class="inner">
+            <p>Developed by <a href="#">Vishwas Katiyar</a>, by <a href="#">@Python</a>.</p>
+        </div>
+        </center>
+    </footer>
+    <!-- Optional JavaScript; choose one of the two! -->
+
+    <!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous">
+    </script>
+
+    <!-- Option 2: Separate Popper and Bootstrap JS -->
+    <!--
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
+    -->
+</body>
+
+</html>
+
+
+
+
+
+
+
+<!-- 
+ -->

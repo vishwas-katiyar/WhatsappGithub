@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+  box-sizing: border-box;
+}
+body {
+  line-height: 1.618em;
+  background: #ecf0f1;
+  color: #444;
+}
+img {
+  max-width: 100%;
+  height: auto;
+}
+.wrapper {
+  max-width: 50rem;
+  width: 100%;
+  margin: 0 auto;
+}
+.slider {
+  background: #fff;
+  position: relative;
+  margin: 2rem 0;
+  overflow: hidden;
+  padding-bottom: 2.5rem;
+  border: 0.25rem solid #95a5a6;
+}
+.slider::after {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 1;
+  content: '';
+  display: block;
+  background: #34495e;
+  height: 3rem;
+}
+.slide-switch {
+  display: none;
+}
+.slide-label {
+  position: absolute;
+  bottom: 1rem;
+  display: block;
+  z-index: 5;
+  height: 1rem;
+  width: 1rem;
+  text-indent: 1rem;
+  overflow: hidden;
+  background: #2980b9;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.25s;
+}
+.slide-label:nth-of-type(1) {
+  left: 1rem;
+}
+.slide-label:nth-of-type(2) {
+  left: 2.5rem;
+}
+.slide-label:nth-of-type(3) {
+  left: 4rem;
+}
+.slide-label:nth-of-type(4) {
+  left: 5.5rem;
+}
+.slide-label:nth-of-type(5) {
+  left: 7rem;
+}
+.padded {
+  padding: 1rem 2rem;
+}
+.slide-content {
+  width: 100%;
+  background: #fff;
+  float: left;
+  margin-right: -100%;
+}
+.slide-switch:checked + .slide-label {
+  background: #3498db;
+}
+.slide-switch:not(:checked) + .slide-label + .slide-content {
+  opacity: 0;
+  transition: opacity 0.35s;
+  pointer-events: none;
+}
+.slide-switch:checked + .slide-label + .slide-content {
+  animation: slide 1s;
+}
+@keyframes slide {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(0);
+  }
+}
+    </style>
+</head>
+<body>
+    <div class="wrapper">
+
+        <div class="slider">
+      
+          <!-- Works with as many slides as are added in-->
+      
+          <input type="radio" name="slide-switches" id="slide_text" checked class="slide-switch">
+          <label for="slide_text" class="slide-label">Slide Text</label>
+          <div class="slide-content padded">
+            <h1>Text Slide Heading</h1>
+            <p>The author of these Travels, Mr. Lemuel Gulliver, is my ancient and intimate friend; there is likewise some relation between us on the mother’s side.  About three years ago, Mr. Gulliver growing weary of the concourse of curious people coming to him at his house in Redriff, made a small purchase of land, with a convenient house, near Newark, in Nottinghamshire, his native country; where he now lives retired, yet in good esteem among his neighbours.</p>
+            <p>	Although Mr. Gulliver was born in Nottinghamshire, where his father dwelt, yet I have heard him say his family came from Oxfordshire; to confirm which, I have observed in the churchyard at Banbury in that county, several tombs and monuments of the Gullivers.</p>
+            <p>	Before he quitted Redriff, he left the custody of the following papers in my hands, with the liberty to dispose of them as I should think fit.  I have carefully perused them three times.</p>
+          </div>
+      
+          <input type="radio" name="slide-switches" id="slide_image" class="slide-switch">
+          <label for="slide_image" class="slide-label">Slide Image</label>
+          <div class="slide-content">
+            <img src="https://i.imgur.com/1k0xC1C.jpg">
+          </div>
+      
+          <input type="radio" name="slide-switches" id="slide_video" class="slide-switch">
+          <label for="slide_video" class="slide-label">Slide Video</label>
+          <div class="slide-content">
+            <iframe width="100%" height="420" src="https://www.youtube.com/embed/zgrrjh5_7IM" frameborder="0" allowfullscreen></iframe>
+          </div>
+      
+        </div>
+      
+       
+      
+      </div>
+</body>
+</html>

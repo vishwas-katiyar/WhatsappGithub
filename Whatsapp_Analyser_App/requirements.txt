@@ -1,0 +1,8 @@
+gunicorn
+Django
+pymongo
+pandas
+numpy
+flask
+twilio
+django-heroku
