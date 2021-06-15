@@ -165,9 +165,9 @@ def users(request):
     return render(request, 'users.html',context=context)
 
 
-def bot():
+def bot(request):
     print('jio')
-    incoming_msg = request.values.get('Body', '').lower()
+    incoming_msg = request.POST['Body'].lower()
     print(incoming_msg)
     resp = MessagingResponse()
     msg = resp.message()
