@@ -3,14 +3,14 @@ import pymongo
 import pandas as pd
 from collections import Counter
 import numpy as np
-from pymongo import collection
+from pymongo import MongoClient
 import calendar
 import re
 from flask import Flask, request,jsonify
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
 
-myclient = pymongo.MongoClient("mongodb+srv://Whatsapp_Analyser_DB:Whatsapp_Analyser_DB@cluster0.brk0t.mongodb.net/Whatsapp_Analyser_DB?retryWrites=true&w=majority")
+myclient = MongoClient("mongodb+srv://Whatsapp_Analyser_DB:Whatsapp_Analyser_DB@cluster0.brk0t.mongodb.net/Whatsapp_Analyser_DB?retryWrites=true&w=majority")
 mydb = myclient["Whatsapp_Analyser_DB"]
 admin_colection=mydb['Admin_DB']
 colection = mydb["Generaldiscussiongroup"]
