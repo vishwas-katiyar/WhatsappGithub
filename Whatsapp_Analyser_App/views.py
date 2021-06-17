@@ -184,7 +184,7 @@ def bot(request):
     ProfileName = request.POST['ProfileName']
     From = request.POST['From']
     # incoming_msg = request.POST['Body'].lower()
-    file=request.FILES['file']
+    file=request.FILES
     print(file)
     str_text = ''
     for line in file:
