@@ -186,6 +186,7 @@ def bot(request):
     # incoming_msg = request.POST['Body'].lower()
     file=request.FILES
     print(file)
+    print(request.POST)
     str_text = ''
     for line in file:
         str_text = str_text + line.decode()
