@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from django.http import JsonResponse
 import pymongo
 import pandas as pd
 from collections import Counter
@@ -6,7 +7,8 @@ import numpy as np
 from pymongo import MongoClient
 import calendar
 import re
-from flask import Flask, request,jsonify
+from django.views.decorators.csrf import csrf_exempt
+import json 
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
 
@@ -164,7 +166,7 @@ def users(request):
     # print(context)
     return render(request, 'users.html',context=context)
 
-
+@csrf_exempt
 def bot(request):
     print('jio')
     incoming_msg = request.POST['Body'].lower()
@@ -189,4 +191,4 @@ def bot(request):
         responded = True
     if not responded:
         msg.body('I only know about famous quotes and cats, sorry!')
-    return jsonify({'a':'c'})
+    return JsonResponse({'a':'c'})
