@@ -8,13 +8,18 @@ from pymongo import MongoClient
 import calendar
 import re
 from django.views.decorators.csrf import csrf_exempt
-import json 
+import json ,os
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client 
+
  
-account_sid = 'AC469bf41df225fa17e3007651a541e5c3' 
-auth_token = 'a8794b4f8e0b55f6b322c9b4572eb4a3' 
+
+# ['HOME']
+# print(os.environ)
+account_sid = os.environ['ACCOUNT_SID']
+auth_token =  os.environ['auth_token']
+
 client = Client(account_sid, auth_token) 
 
 
@@ -175,11 +180,16 @@ def users(request):
 @csrf_exempt
 def bot(request):
     print('jio')
-    incoming_msg = request.POST['Body'].lower()
+    incoming_msg = request.POST['Body']
     ProfileName = request.POST['ProfileName']
     From = request.POST['From']
-    incoming_msg = request.POST['Body'].lower()
-    print(request.POST)
+    # incoming_msg = request.POST['Body'].lower()
+    file=request.FILES['file']
+    print(file)
+    str_text = ''
+    for line in file:
+        str_text = str_text + line.decode()
+    print(str_text)
     
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
@@ -192,5 +202,5 @@ def bot(request):
                                 to=From 
                             ) 
     
-    print(message.sid)    
-    return HttpResponse(json.dumps({incoming_msg:incoming_msg}), content_type="application/json")
+    # print(message.sid)    
+    return HttpResponse(json.dumps({'a':'b'}), content_type="application/json")
