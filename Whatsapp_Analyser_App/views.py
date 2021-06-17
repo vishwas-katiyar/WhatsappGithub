@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from django.http import JsonResponse
+from django.http import HttpResponse
 import pymongo
 import pandas as pd
 from collections import Counter
@@ -11,6 +11,12 @@ from django.views.decorators.csrf import csrf_exempt
 import json 
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
+from twilio.rest import Client 
+ 
+account_sid = 'AC469bf41df225fa17e3007651a541e5c3' 
+auth_token = '89dec2448a5aabd0d06bc7a4fddaf177' 
+client = Client(account_sid, auth_token) 
+
 
 myclient = MongoClient("mongodb+srv://Whatsapp_Analyser_DB:Whatsapp_Analyser_DB@cluster0.brk0t.mongodb.net/Whatsapp_Analyser_DB?retryWrites=true&w=majority")
 mydb = myclient["Whatsapp_Analyser_DB"]
@@ -170,25 +176,13 @@ def users(request):
 def bot(request):
     print('jio')
     incoming_msg = request.POST['Body'].lower()
-    print(incoming_msg)
-    resp = MessagingResponse()
-    msg = resp.message()
-    responded = False
-    if 'quote' in incoming_msg:
-        # return a quote
-        print('jioo')
-        r = requests.get('https://api.quotable.io/random')
-        if r.status_code == 200:
-            data = r.json()
-            quote = f'{data["content"]} ({data["author"]})'
-        else:
-            quote = 'I could not retrieve a quote at this time, sorry.'
-        msg.body(quote)
-        responded = True
-    if 'cat' in incoming_msg:
-        # return a cat pic
-        msg.media('https://cataas.com/cat')
-        responded = True
-    if not responded:
-        msg.body('I only know about famous quotes and cats, sorry!')
-    return JsonResponse({'a':'c'})
+    print(request.POST)
+    
+    message = client.messages.create( 
+                                from_='whatsapp:+14155238886',  
+                                body=incoming_msg,      
+                                to='whatsapp:+917898868692' 
+                            ) 
+    
+    print(message.sid)    
+    return HttpResponse(json.dumps({incoming_msg:incoming_msg}), content_type="application/json")
