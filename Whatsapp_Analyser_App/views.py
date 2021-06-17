@@ -14,7 +14,7 @@ from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client 
  
 account_sid = 'AC469bf41df225fa17e3007651a541e5c3' 
-auth_token = '89dec2448a5aabd0d06bc7a4fddaf177' 
+auth_token = 'a8794b4f8e0b55f6b322c9b4572eb4a3' 
 client = Client(account_sid, auth_token) 
 
 
@@ -176,12 +176,20 @@ def users(request):
 def bot(request):
     print('jio')
     incoming_msg = request.POST['Body'].lower()
+    ProfileName = request.POST['ProfileName']
+    From = request.POST['From']
+    incoming_msg = request.POST['Body'].lower()
     print(request.POST)
     
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
-                                body=incoming_msg,      
-                                to='whatsapp:+917898868692' 
+                                body=f'''Hello,{ProfileName} your msg is :  {incoming_msg}
+
+                                Thanks 
+                                Vishwas
+                                
+                                ''',      
+                                to=From 
                             ) 
     
     print(message.sid)    
