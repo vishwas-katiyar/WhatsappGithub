@@ -183,15 +183,24 @@ def bot(request):
     incoming_msg = request.POST['Body']
     ProfileName = request.POST['ProfileName']
     From = request.POST['From']
+    # SmsMessageSid=request.POST['SmsMessageSid']
     # incoming_msg = request.POST['Body'].lower()
-    file=request.FILES
-    print(file)
-    print(request.POST)
+    file=request
+    # print(dir(request))
+    # print(request)
     str_text = ''
     for line in file:
         str_text = str_text + line.decode()
     print(str_text)
-    
+    MessageSid='MMe7d648925e590174d054e9fa5f245f27'
+    Sid='a8794b4f8e0b55f6b322c9b4572eb4a3'
+    a = client.messages(MessageSid)
+    media=a
+    print(dir(a))
+    print(media.media('MMe7d648925e590174d054e9fa5f245f27'))
+    print(dir(media.fetch().media.get('a8794b4f8e0b55f6b322c9b4572eb4a3')))
+    # print(media._uri())
+
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
                                 body=f'''Hello,{ProfileName} your msg is :  {incoming_msg}
