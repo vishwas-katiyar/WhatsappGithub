@@ -97,7 +97,7 @@ while True:
             print(message.sid)
         except Exception as e :
             message = client.messages.create(
-                                    body='Hello there!',
+                                    # body=' there!',
                                     from_='whatsapp:+14155238886',
                                     body=e,
                                     to='whatsapp:+7898868692'
