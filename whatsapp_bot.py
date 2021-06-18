@@ -35,7 +35,7 @@ browser = webdriver.Chrome()
 
 account_sid = os.environ['ACCOUNT_SID']
 auth_token =  os.environ['auth_token']
-
+client = Client(account_sid, auth_token)
 
 
 # options = webdriver.ChromeOptions() 
@@ -85,7 +85,7 @@ while True:
         
         print('captured')
          
-        client = Client(account_sid, auth_token)
+        
         try:
             message = client.messages.create(
                                     body='Hello there!',
