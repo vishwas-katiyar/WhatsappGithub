@@ -81,36 +81,32 @@ browser.get(URL)
 while True:
     try:
         browser.find_element_by_xpath("//canvas[@role='img']")
-        canvas = browser.get_screenshot_as_file("screenshot.png")
-        
-        print('captured')
-         
-        
-        try:
-            message = client.messages.create(
-                                    body='Hello there!',
-                                    from_='whatsapp:+14155238886',
-                                    media_url=['https://selinum-app.herokuapp.com/screenshot.png'],
-                                    to='whatsapp:+917898868692'
-                                )
-
-            print(message.sid)
-        except Exception as e :
-            message = client.messages.create(
-                                    # body=' there!',
-                                    from_='whatsapp:+14155238886',
-                                    body=e,
-                                    to='whatsapp:+7898868692'
-                                )
-        # print(canvas.text)
         break
-    except Exception as e:
-        message = client.messages.create(
-                                    # body=' there!',
-                                    from_='whatsapp:+14155238886',
-                                    body=e,
-                                    to='whatsapp:+7898868692'
-                                )
+    except :
+        pass
+canvas = browser.get_screenshot_as_file("screenshot.png")
+    
+print('captured')
+        
+    
+try:
+    message = client.messages.create(
+                            body='Hello there!',
+                            from_='whatsapp:+14155238886',
+                            media_url=['https://selinum-app.herokuapp.com/screenshot.png'],
+                            to='whatsapp:+917898868692'
+                        )
+
+    print(message.sid)
+except Exception as e :
+    message = client.messages.create(
+                            # body=' there!',
+                            from_='whatsapp:+14155238886',
+                            body=e,
+                            to='whatsapp:+7898868692'
+                        )
+# print(canvas.text)
+
 # get the canvas as a PNG base64 string
 # canvas_base64 = browser.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
 # # decode
