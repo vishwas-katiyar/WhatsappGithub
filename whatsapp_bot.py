@@ -29,9 +29,9 @@ CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 chrome_options = webdriver.ChromeOptions()
 chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
-chrome_options.binary_location = GOOGLE_CHROME_PATH
+# chrome_options.binary_location = GOOGLE_CHROME_PATH
 
-browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
+browser = webdriver.Chrome()
 
 account_sid = os.environ['ACCOUNT_SID']
 auth_token =  os.environ['auth_token']
@@ -81,9 +81,9 @@ browser.get(URL)
 while True:
     try:
         browser.find_element_by_xpath("//canvas[@role='img']")
-        print('captured')
         canvas = browser.get_screenshot_as_file("screenshot.png")
         
+        print('captured')
          
         client = Client(account_sid, auth_token)
         try:
@@ -91,7 +91,7 @@ while True:
                                     body='Hello there!',
                                     from_='whatsapp:+14155238886',
                                     media_url=['https://selinum-app.herokuapp.com/screenshot.png'],
-                                    to='whatsapp:+7898868692'
+                                    to='whatsapp:+917898868692'
                                 )
 
             print(message.sid)
