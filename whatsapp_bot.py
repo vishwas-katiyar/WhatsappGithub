@@ -9,7 +9,7 @@ import re
 import os
 from twilio.rest import Client
 import regex
-import getpass
+# import getpass
 import emoji
 ################################################################################################################
 
@@ -32,6 +32,11 @@ chrome_options.add_argument('--no-sandbox')
 chrome_options.binary_location = GOOGLE_CHROME_PATH
 
 browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+
+account_sid = os.environ['ACCOUNT_SID']
+auth_token =  os.environ['auth_token']
+
+
 
 # options = webdriver.ChromeOptions() 
 # options.add_argument("start-maximized")
@@ -79,19 +84,25 @@ while True:
         print('captured')
         canvas = browser.get_screenshot_as_file("screenshot.png")
         
-        account_sid = 'AC469bf41df225fa17e3007651a541e5c3' 
-        auth_token = 'a8794b4f8e0b55f6b322c9b4572eb4a3' 
+         
         client = Client(account_sid, auth_token)
-
-        message = client.messages.create(
+        try:
+            message = client.messages.create(
                                     body='Hello there!',
                                     from_='whatsapp:+14155238886',
-                                    media_url=['screenshot.png'],
-                                    to='whatsapp:+7898869692'
+                                    media_url=['https://selinum-app.herokuapp.com/screenshot.png'],
+                                    to='whatsapp:+7898868692'
                                 )
 
-        print(message.sid)
-
+            print(message.sid)
+        except Exception as e :
+            message = client.messages.create(
+                                    body='Hello there!',
+                                    from_='whatsapp:+14155238886',
+                                    body=e,
+                                    to='whatsapp:+7898868692'
+                                )
+            
         
         # print(canvas.text)
         break

@@ -19,9 +19,16 @@ print(df)
 '''
 
 from twilio.rest import Client
-account_sid = 'AC469bf41df225fa17e3007651a541e5c3' 
-auth_token = 'a8794b4f8e0b55f6b322c9b4572eb4a3' 
+
+account_sid = os.environ['ACCOUNT_SID']
+auth_token =  os.environ['auth_token']
 client = Client(account_sid, auth_token)
 
-for sms in client.messages.list():
-    print(sms.uri)
+message = client.messages.create(
+                                    body='Hello there!',
+                                    from_='whatsapp:+14155238886',
+                                    # body='loll',
+                                    to='whatsapp:+7898869692'
+                                )
+
+print(message.sid)

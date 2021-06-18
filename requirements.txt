@@ -10,3 +10,4 @@ dnspython
 selenium
 emoji
 webdriver_manager
+regex
