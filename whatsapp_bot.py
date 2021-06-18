@@ -31,7 +31,7 @@ chrome_options.add_argument('--disable-gpu')
 chrome_options.add_argument('--no-sandbox')
 chrome_options.binary_location = GOOGLE_CHROME_PATH
 
-browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, chrome_options=chrome_options)
+browser = webdriver.Chrome(executable_path=CHROMEDRIVER_PATH, options=chrome_options)
 
 account_sid = os.environ['ACCOUNT_SID']
 auth_token =  os.environ['auth_token']
