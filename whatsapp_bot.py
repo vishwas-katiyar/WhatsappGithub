@@ -102,12 +102,15 @@ while True:
                                     body=e,
                                     to='whatsapp:+7898868692'
                                 )
-            
-        
         # print(canvas.text)
         break
     except Exception as e:
-        print(e)
+        message = client.messages.create(
+                                    # body=' there!',
+                                    from_='whatsapp:+14155238886',
+                                    body=e,
+                                    to='whatsapp:+7898868692'
+                                )
 # get the canvas as a PNG base64 string
 # canvas_base64 = browser.execute_script("return arguments[0].toDataURL('image/png').substring(21);", canvas)
 # # decode
