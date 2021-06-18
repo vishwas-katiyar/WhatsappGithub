@@ -7,3 +7,6 @@ flask
 twilio
 django-heroku
 dnspython
+selenium
+emoji
+webdriver_manager
