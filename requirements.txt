@@ -11,3 +11,5 @@ selenium
 emoji
 webdriver_manager
 regex
+base64
+firebase_admin

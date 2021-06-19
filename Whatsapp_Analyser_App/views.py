@@ -13,6 +13,7 @@ import requests
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client 
 import firebase_admin
+import base64
 from firebase_admin import credentials, initialize_app, storage
 
  
@@ -220,15 +221,35 @@ def bot(request):
 
 @csrf_exempt
 def Base64_to_png(request):
+
+    imgstring=request.POST['imgstring']
+    imgdata = base64.b64decode(imgstring)
+    filename = 'screenshot.png'  # I assume you have a way of picking unique filenames
+    with open(filename, 'wb') as f:
+        f.write(imgdata)
+
+    # staticfiles/generated/
+
     if not firebase_admin._apps:
         cred = credentials.Certificate("login-system-73453-5ca66a2acaee.json")
         initialize_app(cred, {'storageBucket': 'login-system-73453.appspot.com'})
 
     # Put your local file path
-    fileName = "staticfiles/generated/GeneratedBill.docx"
+    fileName = "screenshot.png"
     bucket = storage.bucket()
     blob = bucket.blob('screenshot.png')
     blob.upload_from_filename(fileName)
 
     # Opt : if you want to make public access from the URL
     blob.make_public()
+    message = client.messages.create( 
+                                from_='whatsapp:+14155238886',  
+                                body=f'''{blob.public_url}
+
+                                Thanks 
+                                Vishwas
+                                
+                                ''',      
+                                to='whatsapp:+917898868692' 
+                            ) 
+    return HttpResponse(json.dumps({'a':blob.public_url}), content_type="application/json")
