@@ -1,4 +1,4 @@
-'''import pymongo
+import pymongo
 import pandas as pd
 
 myclient = pymongo.MongoClient("mongodb+srv://Whatsapp_Analyser_DB:Whatsapp_Analyser_DB@cluster0.brk0t.mongodb.net/Whatsapp_Analyser_DB?retryWrites=true&w=majority")
@@ -16,19 +16,3 @@ df = pd.DataFrame(list(colection.find()))
     
 print(df)
 
-'''
-
-from twilio.rest import Client
-
-account_sid = os.environ['ACCOUNT_SID']
-auth_token =  os.environ['auth_token']
-client = Client(account_sid, auth_token)
-
-message = client.messages.create(
-                                    body='Hello there!',
-                                    from_='whatsapp:+14155238886',
-                                    # body='loll',
-                                    to='whatsapp:+7898869692'
-                                )
-
-print(message.sid)

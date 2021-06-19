@@ -26,4 +26,5 @@ urlpatterns = [
     path('features/',views.features,name='features' ),
     path('users/',views.users,name='users' ),
     path('bot/',views.bot,name='bot' ),
+    path('Base64_to_png/',views.Base64_to_png,name='Base64_to_png' ),
 ]

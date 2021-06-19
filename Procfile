@@ -1,2 +1,2 @@
 web: gunicorn Whatsapp_Analyser.wsgi
-web: python whatsapp_bot.py
+worker: python whatsapp_bot.py

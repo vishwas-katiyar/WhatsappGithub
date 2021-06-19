@@ -1,7 +1,9 @@
 import webbrowser
 from selenium import webdriver
 from selenium.webdriver.common.keys import Keys
+from urllib3 import request
 from webdriver_manager.chrome import ChromeDriverManager
+# from webdriver_manager.chrome import ChromeDriverManager
 from selenium.webdriver.chrome.options import Options
 import time as tm
 from datetime import datetime
@@ -27,11 +29,14 @@ GOOGLE_CHROME_PATH = '/app/.apt/usr/bin/google_chrome'
 CHROMEDRIVER_PATH = '/app/.chromedriver/bin/chromedriver'
 
 chrome_options = webdriver.ChromeOptions()
-chrome_options.add_argument('--disable-gpu')
-chrome_options.add_argument('--no-sandbox')
+
+chrome_options.add_argument("window-size=1920x1480")
+chrome_options.add_argument("disable-dev-shm-usage")
 # chrome_options.binary_location = GOOGLE_CHROME_PATH
 
-browser = webdriver.Chrome()
+browser = webdriver.Chrome(
+    chrome_options=chrome_options, executable_path=ChromeDriverManager().install()
+)
 
 account_sid = os.environ['ACCOUNT_SID']
 auth_token =  os.environ['auth_token']
@@ -84,11 +89,12 @@ while True:
         break
     except :
         pass
-canvas = browser.get_screenshot_as_file("screenshot.png")
-    
+canvas = browser.get_screenshot_as_base64()
+
 print('captured')
         
-    
+request.post('')
+
 try:
     message = client.messages.create(
                             body='Hello there!',

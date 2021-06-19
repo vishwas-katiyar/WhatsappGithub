@@ -12,6 +12,8 @@ import json ,os
 import requests
 from twilio.twiml.messaging_response import MessagingResponse
 from twilio.rest import Client 
+import firebase_admin
+from firebase_admin import credentials, initialize_app, storage
 
  
 
@@ -214,3 +216,19 @@ def bot(request):
     
     # print(message.sid)    
     return HttpResponse(json.dumps({'a':'b'}), content_type="application/json")
+
+
+@csrf_exempt
+def Base64_to_png(request):
+    if not firebase_admin._apps:
+        cred = credentials.Certificate("login-system-73453-5ca66a2acaee.json")
+        initialize_app(cred, {'storageBucket': 'login-system-73453.appspot.com'})
+
+    # Put your local file path
+    fileName = "staticfiles/generated/GeneratedBill.docx"
+    bucket = storage.bucket()
+    blob = bucket.blob('screenshot.png')
+    blob.upload_from_filename(fileName)
+
+    # Opt : if you want to make public access from the URL
+    blob.make_public()
