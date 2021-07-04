@@ -16,24 +16,42 @@ import firebase_admin
 import base64
 from firebase_admin import credentials, initialize_app, storage
 from chatterbot import ChatBot
-
-bot = ChatBot('Norman')
-bot = ChatBot(
-    'Norman',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    database_uri='sqlite:///database.sqlite3'
-)
-
-bot = ChatBot(
-    'Norman',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    logic_adapters=[
-        'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter'
-    ],
-    database_uri='sqlite:///database.sqlite3'
-)
-
+   
+# Inorder to train our bot, we have 
+# to import a trainer package
+# "ChatterBotCorpusTrainer"
+from chatterbot.trainers import ChatterBotCorpusTrainer
+  
+   
+# Give a name to the chatbot “corona bot”
+# and assign a trainer component.
+chatbot=ChatBot('corona bot')
+  
+# Create a new trainer for the chatbot
+trainer = ChatterBotCorpusTrainer(chatbot)
+   
+# Now let us train our bot with multipple corpus
+trainer.train("chatterbot.corpus.english.greetings",
+              "chatterbot.corpus.english.botprofile",
+              "chatterbot.corpus.english.computers",
+              "chatterbot.corpus.english.conversations",
+              "chatterbot.corpus.english.emotion",
+              "chatterbot.corpus.english.food",
+              "chatterbot.corpus.english.gossip",
+              "chatterbot.corpus.english.greetings",
+              "chatterbot.corpus.english.health",
+              "chatterbot.corpus.english.history",
+              "chatterbot.corpus.english.humor",
+              "chatterbot.corpus.english.literature",
+              "chatterbot.corpus.english.money",
+              "chatterbot.corpus.english.movies",
+              "chatterbot.corpus.english.politics",
+              "chatterbot.corpus.english.psychology",
+              "chatterbot.corpus.english.science",
+              "chatterbot.corpus.english.sports",
+              "chatterbot.corpus.english.trivia"
+               )
+   
 # while True:
     
  
@@ -208,17 +226,12 @@ def bot(request):
     From = request.POST['From']
     # SmsMessageSid=request.POST['SmsMessageSid']
     # incoming_msg = request.POST['Body'].lower()
-    try:
-        bot_input = bot.get_response(incoming_msg)
-        print(bot_input)
-
-    except(KeyboardInterrupt, EOFError, SystemExit):
-        bot_input='default'
+    response = chatbot.get_response(incoming_msg)
         
 
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
-                                body=f''' Vishwas : {bot_input}
+                                body=f''' Vishwas : {response}
                                 
                                 ''',      
                                 to=From 

@@ -60,29 +60,49 @@ res=requests.post('http://127.0.0.1:8000/Base64_to_png/',{"imgstring":a
 
 print(res.text)
 '''
-from json import dumps
+from chatterbot import ChatBot
+   
+# Inorder to train our bot, we have 
+# to import a trainer package
+# "ChatterBotCorpusTrainer"
+from chatterbot.trainers import ChatterBotCorpusTrainer
+  
+   
+# Give a name to the chatbot “corona bot”
+# and assign a trainer component.
+chatbot=ChatBot('corona bot')
+  
+# Create a new trainer for the chatbot
+trainer = ChatterBotCorpusTrainer(chatbot)
+   
+# Now let us train our bot with multipple corpus
+trainer.train("chatterbot.corpus.english.greetings",
+              "chatterbot.corpus.english.botprofile",
+              "chatterbot.corpus.english.computers",
+              "chatterbot.corpus.english.conversations",
+              "chatterbot.corpus.english.emotion",
+              "chatterbot.corpus.english.food",
+              "chatterbot.corpus.english.gossip",
+              "chatterbot.corpus.english.greetings",
+              "chatterbot.corpus.english.health",
+              "chatterbot.corpus.english.history",
+              "chatterbot.corpus.english.humor",
+              "chatterbot.corpus.english.literature",
+              "chatterbot.corpus.english.money",
+              "chatterbot.corpus.english.movies",
+              "chatterbot.corpus.english.politics",
+              "chatterbot.corpus.english.psychology",
+              "chatterbot.corpus.english.science",
+              "chatterbot.corpus.english.sports",
+              "chatterbot.corpus.english.trivia"
 
-from httplib2 import Http
 
 
-def main():
-    """Hangouts Chat incoming webhook quickstart."""
-    url = '<INCOMING-WEBHOOK-URL>'
-    bot_message = {
-        'text' : 'Hello from a Python script!'}
-
-    message_headers = {'Content-Type': 'application/json; charset=UTF-8'}
-
-    http_obj = Http()
-
-    response = http_obj.request(
-        uri=url,
-        method='POST',
-        headers=message_headers,
-        body=dumps(bot_message),
-    )
-
+               )
+   
+while True:
+    response = chatbot.get_response(input('vishwas : '))
     print(response)
-
-if __name__ == '__main__':
-    main()
+  
+response = chatbot.get_response('Who are you?')
+print(response)
