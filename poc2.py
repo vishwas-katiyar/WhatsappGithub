@@ -60,29 +60,29 @@ res=requests.post('http://127.0.0.1:8000/Base64_to_png/',{"imgstring":a
 
 print(res.text)
 '''
-from chatterbot import ChatBot
+from json import dumps
 
-bot = ChatBot('Norman')
-bot = ChatBot(
-    'Norman',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    database_uri='sqlite:///database.sqlite3'
-)
+from httplib2 import Http
 
-bot = ChatBot(
-    'Norman',
-    storage_adapter='chatterbot.storage.SQLStorageAdapter',
-    logic_adapters=[
-        'chatterbot.logic.MathematicalEvaluation',
-        'chatterbot.logic.TimeLogicAdapter'
-    ],
-    database_uri='sqlite:///database.sqlite3'
-)
 
-while True:
-    try:
-        bot_input = bot.get_response(input())
-        print(bot_input)
+def main():
+    """Hangouts Chat incoming webhook quickstart."""
+    url = '<INCOMING-WEBHOOK-URL>'
+    bot_message = {
+        'text' : 'Hello from a Python script!'}
 
-    except(KeyboardInterrupt, EOFError, SystemExit):
-        break
+    message_headers = {'Content-Type': 'application/json; charset=UTF-8'}
+
+    http_obj = Http()
+
+    response = http_obj.request(
+        uri=url,
+        method='POST',
+        headers=message_headers,
+        body=dumps(bot_message),
+    )
+
+    print(response)
+
+if __name__ == '__main__':
+    main()
