@@ -25,14 +25,12 @@ logger.setLevel(logging.CRITICAL)
 # "ChatterBotCorpusTrainer"
 from chatterbot.trainers import ChatterBotCorpusTrainer
   
-   
-# Give a name to the chatbot “corona bot”
-# and assign a trainer component.
-chatbot=ChatBot('corona bot')
+ 
+chatbot=ChatBot('')
   
 # Create a new trainer for the chatbot
 trainer = ChatterBotCorpusTrainer(chatbot)
-trainer.train("chatterbot.corpus.english")
+# trainer.train("chatterbot.corpus.english")
 
 # while True:
     
