@@ -1,4 +1,5 @@
 gunicorn
+git+https://github.com/yaml/pyyaml.git
 Django
 pymongo
 pandas
