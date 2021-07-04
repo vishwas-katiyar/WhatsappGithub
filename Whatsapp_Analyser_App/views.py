@@ -214,7 +214,7 @@ def bot(request):
 
     except(KeyboardInterrupt, EOFError, SystemExit):
         bot_input='default'
-        break
+        
 
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
