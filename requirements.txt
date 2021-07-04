@@ -12,3 +12,4 @@ emoji
 webdriver_manager
 regex
 firebase_admin
+chatterbot

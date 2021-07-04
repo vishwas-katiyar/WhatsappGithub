@@ -15,7 +15,27 @@ from twilio.rest import Client
 import firebase_admin
 import base64
 from firebase_admin import credentials, initialize_app, storage
+from chatterbot import ChatBot
 
+bot = ChatBot('Norman')
+bot = ChatBot(
+    'Norman',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    database_uri='sqlite:///database.sqlite3'
+)
+
+bot = ChatBot(
+    'Norman',
+    storage_adapter='chatterbot.storage.SQLStorageAdapter',
+    logic_adapters=[
+        'chatterbot.logic.MathematicalEvaluation',
+        'chatterbot.logic.TimeLogicAdapter'
+    ],
+    database_uri='sqlite:///database.sqlite3'
+)
+
+# while True:
+    
  
 
 # ['HOME']
@@ -188,28 +208,17 @@ def bot(request):
     From = request.POST['From']
     # SmsMessageSid=request.POST['SmsMessageSid']
     # incoming_msg = request.POST['Body'].lower()
-    file=request
-    # print(dir(request))
-    # print(request)
-    str_text = ''
-    for line in file:
-        str_text = str_text + line.decode()
-    print(str_text)
-    MessageSid='MMe7d648925e590174d054e9fa5f245f27'
-    Sid='a8794b4f8e0b55f6b322c9b4572eb4a3'
-    a = client.messages(MessageSid)
-    media=a
-    print(dir(a))
-    print(media.media('MMe7d648925e590174d054e9fa5f245f27'))
-    print(dir(media.fetch().media.get('a8794b4f8e0b55f6b322c9b4572eb4a3')))
-    # print(media._uri())
+    try:
+        bot_input = bot.get_response(incoming_msg)
+        print(bot_input)
+
+    except(KeyboardInterrupt, EOFError, SystemExit):
+        bot_input='default'
+        break
 
     message = client.messages.create( 
                                 from_='whatsapp:+14155238886',  
-                                body=f'''Hello,{ProfileName} your msg is :  {incoming_msg}
-
-                                Thanks 
-                                Vishwas
+                                body=f''' Vishwas : {bot_input}
                                 
                                 ''',      
                                 to=From 
