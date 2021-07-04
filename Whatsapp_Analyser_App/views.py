@@ -16,6 +16,9 @@ import firebase_admin
 import base64
 from firebase_admin import credentials, initialize_app, storage
 from chatterbot import ChatBot
+import logging 
+logger = logging.getLogger() 
+logger.setLevel(logging.CRITICAL)
    
 # Inorder to train our bot, we have 
 # to import a trainer package
