@@ -65,44 +65,12 @@ from chatterbot import ChatBot
 # Inorder to train our bot, we have 
 # to import a trainer package
 # "ChatterBotCorpusTrainer"
-from chatterbot.trainers import ChatterBotCorpusTrainer
+# from chatterbot.trainers import ChatterBotCorpusTrainer
   
    
-# Give a name to the chatbot “corona bot”
-# and assign a trainer component.
-chatbot=ChatBot('corona bot')
-  
-# Create a new trainer for the chatbot
-trainer = ChatterBotCorpusTrainer(chatbot)
-   
-# Now let us train our bot with multipple corpus
-trainer.train("chatterbot.corpus.english.greetings",
-              "chatterbot.corpus.english.botprofile",
-              "chatterbot.corpus.english.computers",
-              "chatterbot.corpus.english.conversations",
-              "chatterbot.corpus.english.emotion",
-              "chatterbot.corpus.english.food",
-              "chatterbot.corpus.english.gossip",
-              "chatterbot.corpus.english.greetings",
-              "chatterbot.corpus.english.health",
-              "chatterbot.corpus.english.history",
-              "chatterbot.corpus.english.humor",
-              "chatterbot.corpus.english.literature",
-              "chatterbot.corpus.english.money",
-              "chatterbot.corpus.english.movies",
-              "chatterbot.corpus.english.politics",
-              "chatterbot.corpus.english.psychology",
-              "chatterbot.corpus.english.science",
-              "chatterbot.corpus.english.sports",
-              "chatterbot.corpus.english.trivia"
+# Give a name to the chatbot “c
 
-
-
-               )
-   
+import cleverbot
+bot = cleverbot.Cleverbot()
 while True:
-    response = chatbot.get_response(input('vishwas : '))
-    print(response)
-  
-response = chatbot.get_response('Who are you?')
-print(response)
+    print(bot.ask(input()))

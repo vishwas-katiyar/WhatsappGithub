@@ -32,29 +32,8 @@ chatbot=ChatBot('corona bot')
   
 # Create a new trainer for the chatbot
 trainer = ChatterBotCorpusTrainer(chatbot)
-   
-# Now let us train our bot with multipple corpus
-trainer.train("chatterbot.corpus.english.greetings",
-              "chatterbot.corpus.english.botprofile",
-              "chatterbot.corpus.english.computers",
-              "chatterbot.corpus.english.conversations",
-              "chatterbot.corpus.english.emotion",
-              "chatterbot.corpus.english.food",
-              "chatterbot.corpus.english.gossip",
-              "chatterbot.corpus.english.greetings",
-              "chatterbot.corpus.english.health",
-              "chatterbot.corpus.english.history",
-              "chatterbot.corpus.english.humor",
-              "chatterbot.corpus.english.literature",
-              "chatterbot.corpus.english.money",
-              "chatterbot.corpus.english.movies",
-              "chatterbot.corpus.english.politics",
-              "chatterbot.corpus.english.psychology",
-              "chatterbot.corpus.english.science",
-              "chatterbot.corpus.english.sports",
-              "chatterbot.corpus.english.trivia"
-               )
-   
+trainer.train("chatterbot.corpus.english")
+
 # while True:
     
  
