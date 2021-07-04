@@ -12,4 +12,4 @@ emoji
 webdriver_manager
 regex
 firebase_admin
-chatterbot
+git+git://github.com/gunthercox/ChatterBot.git
